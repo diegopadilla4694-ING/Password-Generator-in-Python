@@ -14,6 +14,32 @@ El objetivo principal de este software es mitigar el uso de contraseñas débile
 *   **Ventana Persistente (`Topmost`):** La interfaz se mantiene siempre en primer plano por encima de otras ventanas, ideal para interactuar con ella mientras te registras en un sitio web.
 *   **Control Antiedición:** El campo de texto está bloqueado como "Solo Lectura" (`readonly`) para evitar que el usuario altere accidentalmente la contraseña generada.
 
+
+
+# Codigo
+-`Import`-> `customtkinter`, `secrets`, `string` `pyperclip`
+
+Cada import fue utlizada para generar una cadena de strings aleaoria y segura.
+
+**customtkinter**: Genera una interfaz mas pulida y visualmente mas atractriva.
+
+**secrets**: Genera strings o variables de manera mas segura y robusta.
+
+**string**: Lo use para convertir digitos y ascii_letter de manera aletoria.
+
+**pyperclip**: Me permite copiar la contraseña de a mi portapapeles con Automatización.
+
+
+**class password_suggesgtion():**
+-> Contiene constructores para crear la interfaz grafica ya sea un `self` -> title, geometry, attributes, label, configure, btn, pack.
+
+**self.password = self.secret_password():**
+-> Esto llama a una funcion interna dentro del codigo que es `secret_password()` que contiene parte de la logica del codigo.
+
+**self.entry.insert(0, self.password):** Escribe la contraseña generada dentro de la caja.
+
+**self.entry.configure(state="readonly"):*Pone la caja en modo sólo lectura. Así el usuario puede ver y copiar la contraseña, pero no puede borrarla ni modificarla por accidente usando el teclado.
+
 ---
 
 ## Requisitos e Instalación
