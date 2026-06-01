@@ -38,7 +38,17 @@ Cada import fue utlizada para generar una cadena de strings aleaoria y segura.
 
 **self.entry.insert(0, self.password):** Escribe la contraseña generada dentro de la caja.
 
-**self.entry.configure(state="readonly"):*Pone la caja en modo sólo lectura. Así el usuario puede ver y copiar la contraseña, pero no puede borrarla ni modificarla por accidente usando el teclado.
+**self.entry.configure(state="readonly"):** Utilice esta función para que la caja entre solo en modo sólo lectura. Así el usuario puede ver y copiar la contraseña, pero no puede borrarla ni modificarla por accidente usando el teclado.
+
+*   **self.btn = ctk.CTkButton(self, text="Use password", command=self.copy_and_close)
+self.btn.pack(pady=10:)**
+
+-> Este linea de codigo crea un boton con el texto `"Use password"` que copia la contraseña al portapapeles.
+
+*   **self.btn_generar = ctk.CTkButton(self, text="Change password", command=self.generated_password)
+self.btn_generar.pack(pady=10)**
+
+-> Esta linea de codigo cambia la contrasea una vez que el usuario pulsa el botón generando una nueva contraseña aleatoria.
 
 ---
 
