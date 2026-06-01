@@ -2,11 +2,17 @@
 
 A modern, lightweight, and secure desktop application designed in Python to instantly generate high-entropy passwords. Its graphical interface allows you to create strong credentials with a single click, automating the copying process to improve security and the user experience.
 
+
 ---
 
 ## Project Purpose
 
 The main objective of this mini-software is to mitigate the use of weak or reused passwords. The application solves this problem by offering a utility tool that generates random alphanumeric strings that meet modern cybersecurity standards.
+
+
+![Password generator GUI](project_screenshots/Generator_Password_evidence.png)
+
+
 
 ### Key Features:
 * **Cryptographic Security:** It uses Python's `secrets` module, which accesses the operating system's randomness sources, ensuring that passwords are immune to probabilistic reverse engineering.
@@ -35,12 +41,14 @@ Each import was used to generate a random and secure string.
 **class password_suggestion(ctk.CTk):**
 -> Contains constructors to create the graphical interface, including `self` -> title, geometry, attributes, label, configure, button, and pack.
 
-- Main Structure:
+
+
+## Main Structure:
 
 **class password_suggestion(ctk.CTk)**
 The application is encapsulated in a class that inherits from ctk.CTk to manage the main window and its states during user interaction.
 
-**__init__(self) (Constructor):** Initializes the configured graphical interface, applying its essential properties such as the title, geometry dimensions, foreground persistence (attributes("-topmost", True)), and the distribution of components on the screen using the pack() method.
+**__init__(self) (Constructor):** Initializes the configured graphical interface, applying its essential properties such as the title, geometry dimensions, foreground persistence (attributes(`"-topmost", True`)), and the distribution of components on the screen using the pack() method.
 
 
 **self.password = self.secret_password():** Initializes the software or application by calling the internal function `secret_password`, which handles the algorithmic logic for generating the initial password.
@@ -49,18 +57,33 @@ The application is encapsulated in a class that inherits from ctk.CTk to manage 
 
 **self.entry.configure(state="readonly"):** Locks the text field in "Read Only" mode. This allows the user to view and select the password, but prevents accidental modifications or deletions from the keyboard.
 
+
 # Interaction and Buttons
-- "``Use password`" Button ```python
+**"Use password" Button** 
+``` python
 self.btn = ctk.CTkButton(self, text="Use password", command=self.copy_and_close)
-self.btn.pack(pady=10) ```
+self.btn.pack(pady=10) 
+```
 
--> This code snippet links the button to the `copy_and_close` function, which permanently copies the suggested password to the password manager and then to the user's clipboard, securely closing (destroying) the application window.
+- This code snippet links the button to the `copy_and_close` function, which permanently copies the suggested password to the password manager and then to the user's clipboard, securely closing (destroying) the application window.
 
-- "Change Password" Button ```python
+
+**"Change Password" Button** 
+``` python
 self.btn_generar = ctk.CTkButton(self, text="Change password", command=self.generated_password)
-self.btn_generar.pack(pady=10) ```
+self.btn_generar.pack(pady=10) 
+```
 
--> Invokes the `generated_password` method within the code, which temporarily alters the state of the text field within the interface to clear it, then calculates a new random password and inserts it into the user interface screen.
+- Invokes the `generated_password` method within the code, which temporarily alters the state of the text field within the interface to clear it, then calculates a new random password and inserts it into the user interface screen.
+
+
+- Console Logs
+When interacting with the interface buttons, the system prints confirmations to the console and automates the clipboard to ensure that the credential has been processed transparently:
+
+| Console Log on Save  | Copy Confirmation |
+| :---: | :---: |
+| ![Generstor Password in the Terminal](project_screenshots/Terminal_evidence.png) | ![Clipboard complete](project_screenshots/Clipboard_evidence.png) |
+
 
 ---
 
@@ -72,6 +95,9 @@ Installation command:
 
 ```bash
 pip install customtkinter pyperclip
+```
+
+
 
 ## What did I learn with this project?
 
@@ -79,4 +105,4 @@ pip install customtkinter pyperclip
 
 * **Modern GUI Development:** I experimented with `customtkinter`, learning to manage clean layouts using `pack()`, dynamic window configurations (such as `-topmost` mode), and state control for input elements (`readonly` vs. `normal`).
 
-* **UX Optimization:** I understood how to automate system processes using
+* **UX Optimization:** I understood how to automate system processes using `pyperclip` to improve the user experience, avoiding unnecessary data transfers to the clipboard until the action is officially confirmed by the user.
