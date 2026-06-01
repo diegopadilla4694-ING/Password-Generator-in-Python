@@ -1,62 +1,82 @@
 # Password-Generator-in-Python
 
-Una aplicación de escritorio moderna, ligera y segura diseñada en Python para generar contraseñas de alta entropía de forma instantánea. Su interfaz gráfica permite crear credenciales robustas con un solo clic, automatizando el proceso de copiado para mejorar la seguridad y la experiencia del usuario.
+A modern, lightweight, and secure desktop application designed in Python to instantly generate high-entropy passwords. Its graphical interface allows you to create strong credentials with a single click, automating the copying process to improve security and the user experience.
 
 ---
 
-## Propósito del Proyecto
+## Project Purpose
 
-El objetivo principal de este software es mitigar el uso de contraseñas débiles o reutilizadas. La aplicación resuelve este problema ofreciendo una herramienta utilitaria que genera cadenas alfanuméricas aleatorias que cumplen con los estándares modernos de ciberseguridad.
+The main objective of this mini-software is to mitigate the use of weak or reused passwords. The application solves this problem by offering a utility tool that generates random alphanumeric strings that meet modern cybersecurity standards.
 
-### Características Clave:
-*   **Seguridad Criptográfica:** Utiliza el módulo `secrets` de Python, el cual accede a las fuentes de aleatoriedad del sistema operativo, garantizando que las contraseñas sean inmunes a la ingeniería inversa probabilística.
-*   **Complejidad Forzada:** El algoritmo garantiza la inclusión obligatoria de al menos una letra, un número y un carácter especial (`!@#$%^&*()-_=+`).
-*   **Ventana Persistente (`Topmost`):** La interfaz se mantiene siempre en primer plano por encima de otras ventanas, ideal para interactuar con ella mientras te registras en un sitio web.
-*   **Control Antiedición:** El campo de texto está bloqueado como "Solo Lectura" (`readonly`) para evitar que el usuario altere accidentalmente la contraseña generada.
+### Key Features:
+* **Cryptographic Security:** It uses Python's `secrets` module, which accesses the operating system's randomness sources, ensuring that passwords are immune to probabilistic reverse engineering.
+
+* **Forced Complexity:** The algorithm guarantees the mandatory inclusion of at least one letter, one number, and one special character (`!@#$%^&*()-_=+`).
+* **Persistent Window (`Topmost`):** The interface always remains in the foreground, above other windows, ideal for interacting with it while registering on a website.
+
+* **Anti-Edit Control:** The text field is locked as "Read Only" to prevent the user from accidentally altering the generated password.
+
+# Modules used.
+
+`Import`-> `customtkinter`, `secrets`, `string` `pyperclip`
+
+Each import was used to generate a random and secure string.
+
+**customtkinter**: Generates a more polished and visually appealing interface.
+
+**secrets**: Generates strings or variables in a more secure and robust way.
+
+**string**: Used to randomly convert digits and ASCII letters.
+
+**pyperclip**: Allows me to automatically copy the password to the user's clipboard.
+
+# Code Structure
+
+**class password_suggestion(ctk.CTk):**
+-> Contains constructors to create the graphical interface, including `self` -> title, geometry, attributes, label, configure, button, and pack.
+
+- Main Structure:
+
+**class password_suggestion(ctk.CTk)**
+The application is encapsulated in a class that inherits from ctk.CTk to manage the main window and its states during user interaction.
+
+**__init__(self) (Constructor):** Initializes the configured graphical interface, applying its essential properties such as the title, geometry dimensions, foreground persistence (attributes("-topmost", True)), and the distribution of components on the screen using the pack() method.
 
 
+**self.password = self.secret_password():** Initializes the software or application by calling the internal function `secret_password`, which handles the algorithmic logic for generating the initial password.
 
-# Codigo
--`Import`-> `customtkinter`, `secrets`, `string` `pyperclip`
+**self.entry.insert(0, self.password):** Dynamically inserts the generated string into the interface's text field, which will be 12 characters long.
 
-Cada import fue utlizada para generar una cadena de strings aleaoria y segura.
+**self.entry.configure(state="readonly"):** Locks the text field in "Read Only" mode. This allows the user to view and select the password, but prevents accidental modifications or deletions from the keyboard.
 
-**customtkinter**: Genera una interfaz mas pulida y visualmente mas atractriva.
+# Interaction and Buttons
+- "``Use password`" Button ```python
+self.btn = ctk.CTkButton(self, text="Use password", command=self.copy_and_close)
+self.btn.pack(pady=10) ```
 
-**secrets**: Genera strings o variables de manera mas segura y robusta.
+-> This code snippet links the button to the `copy_and_close` function, which permanently copies the suggested password to the password manager and then to the user's clipboard, securely closing (destroying) the application window.
 
-**string**: Lo use para convertir digitos y ascii_letter de manera aletoria.
+- "Change Password" Button ```python
+self.btn_generar = ctk.CTkButton(self, text="Change password", command=self.generated_password)
+self.btn_generar.pack(pady=10) ```
 
-**pyperclip**: Me permite copiar la contraseña de a mi portapapeles con Automatización.
-
-
-**class password_suggesgtion():**
--> Contiene constructores para crear la interfaz grafica ya sea un `self` -> title, geometry, attributes, label, configure, btn, pack.
-
-**self.password = self.secret_password():**
--> Esto llama a una funcion interna dentro del codigo que es `secret_password()` que contiene parte de la logica del codigo.
-
-**self.entry.insert(0, self.password):** Escribe la contraseña generada dentro de la caja.
-
-**self.entry.configure(state="readonly"):** Utilice esta función para que la caja entre solo en modo sólo lectura. Así el usuario puede ver y copiar la contraseña, pero no puede borrarla ni modificarla por accidente usando el teclado.
-
-*   **self.btn = ctk.CTkButton(self, text="Use password", command=self.copy_and_close)
-self.btn.pack(pady=10:)**
-
--> Este linea de codigo crea un boton con el texto `"Use password"` que copia la contraseña al portapapeles.
-
-*   **self.btn_generar = ctk.CTkButton(self, text="Change password", command=self.generated_password)
-self.btn_generar.pack(pady=10)**
-
--> Esta linea de codigo cambia la contrasea una vez que el usuario pulsa el botón generando una nueva contraseña aleatoria.
+-> Invokes the `generated_password` method within the code, which temporarily alters the state of the text field within the interface to clear it, then calculates a new random password and inserts it into the user interface screen.
 
 ---
 
-## Requisitos e Instalación
+## Requirements and Installation
 
-Para ejecutar este proyecto, necesitas tener instalado **Python 3.7+** y las dependencias externas necesarias para la interfaz y el portapapeles.
+To run this project, you need to have **Python 3.7+** installed and the necessary external dependencies for the interface and clipboard.
 
-Instala los requerimientos ejecutando el siguiente comando en tu terminal:
+Installation command:
 
 ```bash
 pip install customtkinter pyperclip
+
+## What did I learn with this project?
+
+* **Cryptographic Security:** I learned to implement Python's `secrets` module instead of `random`, ensuring that randomness depends directly on the operating system and is suitable for strong passwords.
+
+* **Modern GUI Development:** I experimented with `customtkinter`, learning to manage clean layouts using `pack()`, dynamic window configurations (such as `-topmost` mode), and state control for input elements (`readonly` vs. `normal`).
+
+* **UX Optimization:** I understood how to automate system processes using
